@@ -1,16 +1,19 @@
-<div style="text-align: center; font-family: sans-serif;">
+<div style="text-align: center; font-family: sans-serif; padding: 40px 20px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); color: #f3f3f3;">
   <p>
-    <img src="https://assets.superhivemarket.com/cache/d96288870307ef5c07aca4dfb05194ac.png" style="max-width: 100%; width: 400px;">
+    <img src="https://assets.superhivemarket.com/cache/d96288870307ef5c07aca4dfb05194ac.png" style="max-width: 100%; width: 400px; border-radius: 10px;">
   </p>
-  <hr>
-  <p><b>EdgeX is a handy interface Add-on for Blender 3D.</b></p>
-  <p><b>The Add-on extends vanilla functionality with handy pie menus that extend performance and speed. It features various utilities, including Quick Crease and Bevel Weight tools, Selection utilities, Edge Marking and more!</b></p>
+  <hr style="border-color: #f3f3f3; width: 50%; margin: 20px auto;">
+  <p style="font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #000000;">EdgeX: The Ultimate Blender 3D Add-On</p>
+  <p style="font-size: 18px; line-height: 1.6; color: #000000;">
+    <b>EdgeX</b> is a powerful and intuitive interface Add-on for Blender 3D that enhances your workflow with specialized pie menus. 
+    Designed to extend the vanilla functionality, EdgeX boosts your performance and speed, providing you with easy access to essential tools. 
+    With utilities like <b>Quick Crease</b> and <b>Bevel Weight</b>, edge marking features, and more, EdgeX streamlines your work and saves time.
+  </p>
 </div>
 
-<h1 style="text-align: center; font-family: sans-serif;">Pie Menus</h1>
+<h1 style="text-align: center; font-family: sans-serif; color: black; margin-bottom: 10px;">Features</h1>
 
 <div class="card-container">
-
   <div class="card">
     <img src="https://assets.superhivemarket.com/cache/7803e31dbc5d11117455503de014503f.gif">
     <div class="card-content">
@@ -53,11 +56,33 @@
 
 </div>
 
+<h2 style="text-align: center; font-size: 30px; margin-bottom: 40px; color: #333;">Pricing</h2>
+
+<!-- Plan Container -->
+<div class="plan-container">
+  <div class="plan-card position-center active" onclick="toggleActive(this)">
+    <h3>Basic Plan</h3>
+    <p>$19.99</p>
+    <p>Includes all core features of EdgeX. Ideal for individual users.</p>
+  </div>
+
+  <div class="plan-card position-left" onclick="toggleActive(this)">
+    <h3>Pro Plan</h3>
+    <p>$39.99</p>
+    <p>Includes all features plus exclusive updates and priority support.</p>
+  </div>
+
+  <div class="plan-card position-right" onclick="toggleActive(this)">
+    <h3>Studio Plan</h3>
+    <p>$99.99</p>
+    <p>All Pro features, plus access to studio tools and team licenses. Best for production studios.</p>
+  </div>
+</div>
+
 <div style="display: none;">
   <style>
     body {
       font-family: sans-serif;
-      background: linear-gradient(45deg, #1e2a47, #3c4a8e); /* Gradient background for the body */
       margin: 0;
       padding: 0;
       color: #f3f3f3;
@@ -65,11 +90,19 @@
 
     h1 {
       font-family: 'Arial', sans-serif;
-      color: #ffffff;
-      text-transform: uppercase;
+      color: black;
+      text-transform: none;
       letter-spacing: 2px;
       margin-top: 40px;
       font-size: 36px;
+      margin-bottom: 10px; /* Reduced margin-bottom for Features section */
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 40px; /* Increased margin-bottom for Pricing section */
+      color: #333;
     }
 
     .card-container {
@@ -81,19 +114,19 @@
 
     .card {
       width: 100%;
-      background: linear-gradient(135deg, rgba(34, 34, 36, 1) 0%, rgba(50, 50, 50, 1) 100%); /* Gradient effect for the cards */
+      background: linear-gradient(135deg, rgba(34, 34, 36, 1) 0%, rgba(60, 60, 60, 1) 100%);
       border-radius: 20px;
       margin-bottom: 20px;
       text-align: center;
       overflow: hidden;
-      transform: translateX(-100px); /* Cards start offscreen to the left */
-      opacity: 0; /* Initially invisible */
-      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1); /* Transition for both sliding and fading */
+      transform: translateX(-100px); 
+      opacity: 0; 
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .card.visible {
-      transform: translateX(0); /* Slide to original position */
-      opacity: 1; /* Become fully visible */
+      transform: translateX(0);
+      opacity: 1;
     }
 
     .card img {
@@ -115,12 +148,101 @@
     }
 
     .card:hover {
-      background: linear-gradient(135deg, rgba(44, 44, 48, 1) 0%, rgba(70, 70, 70, 1) 100%); /* Darker gradient on hover */
-      transform: scale(1.02);
+      background: linear-gradient(135deg, rgba(44, 44, 48, 1) 0%, rgba(70, 70, 70, 1) 100%);
+      transform: scale(1.05);
     }
 
     .card:hover h2 {
       color: white;
+    }
+
+    .plan-card {
+      width: 300px;
+      height: 250px;
+      background: linear-gradient(135deg, rgba(34, 34, 36, 1) 0%, rgba(50, 50, 50, 1) 100%);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, background 0.3s ease, filter 0.3s ease;
+    }
+
+    .plan-card:hover {
+      background: linear-gradient(135deg, rgba(44, 44, 48, 1) 0%, rgba(70, 70, 70, 1) 100%);
+    }
+
+    .plan-card.active {
+      filter: brightness(1.3);
+      z-index: 2;
+      scale: 1.1; /* Increase the scale for animation */
+      transition: scale 0.3s ease-out, filter 0.3s ease-out; /* Apply the smooth easing for scaling */
+    }
+
+
+    .plan-card h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #74A2EA;
+    }
+
+    .plan-card p {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .plan-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .plan-card.position-left {
+      position: relative;
+      left: 520px;
+      animation: slideLeft 0.8s ease-out forwards;
+    }
+
+    .plan-card.position-center {
+      position: absolute;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    .plan-card.position-right {
+      position: relative;
+      right: 520px;
+      animation: slideRight 0.8s ease-out forwards;
+    }
+
+    /* Define keyframe animations for the sliding effect */
+    @keyframes slideLeft {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideRight {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
     }
   </style>
 
@@ -134,10 +256,16 @@
           }
         });
       }, {
-        threshold: 0.2  /* Trigger when 20% of the card is in the viewport */
+        threshold: 0.2
       });
 
       cards.forEach(card => observer.observe(card));
     });
+
+    function toggleActive(clickedCard) {
+      const allCards = document.querySelectorAll('.plan-card');
+      allCards.forEach(card => card.classList.remove('active'));
+      clickedCard.classList.add('active');
+    }
   </script>
 </div>
