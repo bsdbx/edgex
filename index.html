@@ -1,92 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modal Example</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .card {
-      width: 300px;
-      margin: 15px;
-      background-color: rgb(34,34,36);
-      border-radius: 20px;
-      text-align: center;
-      overflow: hidden;
-      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card img {
-      width: 100%;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
-
-    .card-content {
-      padding: 20px;
-      font-family: sans-serif;
-      font-size: 18px;
-      color: rgb(180,180,180);
-    }
-
-    .card-content h2 {
-      margin: 0;
-      color: rgb(116, 142, 234);
-    }
-
-    .card:hover {
-      background-color: rgb(44,44,48); /* Slightly lighter */
-      transform: scale(1.02);
-      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6);
-    }
-
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.3s ease-in-out;
-      z-index: 9999;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 80%;
-      height: 80%;
-      max-width: 1200px;
-      max-height: 800px;
-      overflow: hidden;
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-
 <div style="text-align: center;">
   <p>
     <img src="https://assets.superhivemarket.com/cache/d96288870307ef5c07aca4dfb05194ac.png" style="max-width: 100%; width: 400px;">
@@ -145,43 +56,123 @@
 <!-- Modal for displaying GIF -->
 <div id="gifModal" class="modal" onclick="closeModal()">
   <div class="modal-content">
-    <img id="modalGif" style="width: 100%; height: 100%; object-fit: contain; border: none; display: none;">
+    <img id="modalGif" src="" alt="Preview GIF">
   </div>
+</div>
+
+<!-- All CSS must be inline (BlenderMarket restriction) -->
+<div style="display: none;">
+  <style>
+    .card-container .card {
+      width: 100%;
+      background-color: rgb(34,34,36);
+      border-radius: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      overflow: hidden;
+      transform: translateX(-200px);
+      opacity: 0;
+      animation: slideIn 1s ease-in-out forwards;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+    .card:nth-child(4) { animation-delay: 0.8s; }
+    .card:nth-child(5) { animation-delay: 1s; }
+
+    .card img {
+      width: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .card-content {
+      padding: 20px;
+      font-family: sans-serif;
+      font-size: 18px;
+      color: rgb(180,180,180);
+    }
+
+    .card-content h2 {
+      margin: 0;
+      color: rgb(116, 142, 234);
+      transition: color 0.3s ease;
+    }
+
+    .card:hover {
+      background-color: rgb(44,44,48);
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6);
+    }
+
+    .card:hover h2 {
+      color: white;
+    }
+
+    /* Modal Styling */
+    .modal {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      margin: 0;
+      padding: 0;
+    }
+
+    .modal-content {
+      width: 80vw;
+      max-width: 800px;
+      max-height: 80vh;
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-200px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
 </div>
 
 <script>
   function showGif(gifUrl) {
     const modal = document.getElementById('gifModal');
     const modalGif = document.getElementById('modalGif');
-    modal.style.display = "flex";
-    modalGif.src = gifUrl;
-    modalGif.style.display = "block";
-    document.body.style.overflow = "hidden"; // Disable scrolling on the parent page
-    resizeIframe();  // Resize iframe to full screen if embedded
 
-    // Centering modal correctly even within iframe context
-    if (window.top === window) {
-      // Not inside an iframe, so don't do anything special
-      return;
-    }
-    // Make modal appear centered on top-level window when iframe is used
-    window.top.document.body.style.overflow = "hidden"; // Disable scrolling
+    modalGif.src = gifUrl;
+    modal.style.display = "flex";
   }
 
   function closeModal() {
     const modal = document.getElementById('gifModal');
     const modalGif = document.getElementById('modalGif');
-    modal.style.display = "none";
-    modalGif.style.display = "none";
-    modalGif.src = '';
-    document.body.style.overflow = "auto"; // Re-enable scrolling on the parent page
-    resetIframe();  // Reset iframe size if embedded
 
-    if (window.top === window) {
-      // Not inside an iframe, so don't do anything special
-      return;
-    }
-    window.top.document.body.style.overflow = "auto"; // Re-enable scrolling
+    modal.style.display = "none";
+    modalGif.src = "";
   }
 
   window.addEventListener('keydown', function(e) {
@@ -190,25 +181,11 @@
     }
   });
 
-  // Function to resize iframe when modal is shown
-  function resizeIframe() {
-    const iframe = document.getElementById('iframeExample');
-    iframe.style.position = 'absolute';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-  }
-
-  // Function to reset iframe size when modal is closed
-  function resetIframe() {
-    const iframe = document.getElementById('iframeExample');
-    iframe.style.position = 'relative';
-    iframe.style.width = '600px'; // or your default iframe width
-    iframe.style.height = '400px'; // or your default iframe height
-  }
+  window.addEventListener('contextmenu', function(e) {
+    const modal = document.getElementById('gifModal');
+    if (modal.style.display === "flex") {
+      e.preventDefault();
+      closeModal();
+    }
+  });
 </script>
-
-</body>
-</html>
