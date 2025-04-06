@@ -149,7 +149,7 @@
 </div>
 
 <script>
-  // Ensuring the modal is hidden on page load
+  // Ensure modal is hidden initially
   window.onload = function() {
     const modal = document.getElementById('gifModal');
     const modalGif = document.getElementById('modalGif');
@@ -168,8 +168,8 @@
     modalGif.src = gifUrl; // Set the gif source
     modalGif.style.display = "block"; // Display the image
 
-    // Disable scrolling on the body
-    document.body.style.overflow = "hidden";
+    // Disable scrolling on the body (main window, not iframe)
+    window.top.document.body.style.overflow = "hidden";
   }
 
   // Function to close the gif modal when clicked outside
@@ -181,8 +181,8 @@
     modalGif.style.display = "none";  // Hide the image
     modalGif.src = '';  // Clear the gif source to prevent lingering images
 
-    // Re-enable scrolling on the body
-    document.body.style.overflow = "auto";
+    // Re-enable scrolling on the body (main window, not iframe)
+    window.top.document.body.style.overflow = "auto";
   }
 
   // Close modal with ESC key
