@@ -11,7 +11,7 @@
 
 <div class="card-container">
 
-  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/7803e31dbc5d11117455503de014503f.gif')">
+  <div class="card">
     <img src="https://assets.superhivemarket.com/cache/7803e31dbc5d11117455503de014503f.gif">
     <div class="card-content">
       <h2>Attribute Set</h2>
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/cdb735e6709b3d02d4a3469bedfd953f.gif')">
+  <div class="card">
     <img src="https://assets.superhivemarket.com/cache/cdb735e6709b3d02d4a3469bedfd953f.gif">
     <div class="card-content">
       <h2>Quick Attribute</h2>
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/e646dc803d1e0e01f680ee2f71176703.gif')">
+  <div class="card">
     <img src="https://assets.superhivemarket.com/cache/e646dc803d1e0e01f680ee2f71176703.gif">
     <div class="card-content">
       <h2>Attribute Select</h2>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/f17fb141117dd1dc26c09171adba067c.gif')">
+  <div class="card">
     <img src="https://assets.superhivemarket.com/cache/f17fb141117dd1dc26c09171adba067c.gif">
     <div class="card-content">
       <h2>Quick Mark</h2>
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/d92582ba963d9f5540f57ca8c6110422.gif')">
+  <div class="card">
     <img src="https://assets.superhivemarket.com/cache/d92582ba963d9f5540f57ca8c6110422.gif">
     <div class="card-content">
       <h2>Mark Select</h2>
@@ -53,14 +53,6 @@
 
 </div>
 
-<!-- Modal for displaying GIF -->
-<div id="gifModal" class="modal" onclick="closeModal()">
-  <div class="modal-content">
-    <img id="modalGif" src="" alt="Preview GIF">
-  </div>
-</div>
-
-<!-- All CSS must be inline (BlenderMarket restriction) -->
 <div style="display: none;">
   <style>
     .card-container .card {
@@ -102,47 +94,13 @@
     }
 
     .card:hover {
-      background-color: rgb(44,44,48);
+      background-color: rgb(44,44,48); /* Slightly lighter */
       transform: scale(1.02);
-      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6);
+      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6); /* More visible on white */
     }
 
     .card:hover h2 {
       color: white;
-    }
-
-    /* Modal Styling */
-    .modal {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 9999;
-      margin: 0;
-      padding: 0;
-    }
-
-    .modal-content {
-      width: 80vw;
-      max-width: 800px;
-      max-height: 80vh;
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .modal-content img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
     }
 
     @keyframes slideIn {
@@ -157,35 +115,3 @@
     }
   </style>
 </div>
-
-<script>
-  function showGif(gifUrl) {
-    const modal = document.getElementById('gifModal');
-    const modalGif = document.getElementById('modalGif');
-
-    modalGif.src = gifUrl;
-    modal.style.display = "flex";
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('gifModal');
-    const modalGif = document.getElementById('modalGif');
-
-    modal.style.display = "none";
-    modalGif.src = "";
-  }
-
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
-
-  window.addEventListener('contextmenu', function(e) {
-    const modal = document.getElementById('gifModal');
-    if (modal.style.display === "flex") {
-      e.preventDefault();
-      closeModal();
-    }
-  });
-</script>
