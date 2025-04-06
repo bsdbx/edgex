@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div style="text-align: center; font-family: sans-serif;">
   <p>
     <img src="https://assets.superhivemarket.com/cache/d96288870307ef5c07aca4dfb05194ac.png" style="max-width: 100%; width: 400px;">
   </p>
@@ -7,7 +7,7 @@
   <p><b>The Add-on extends vanilla functionality with handy pie menus that extend performance and speed. It features various utilities, including Quick Crease and Bevel Weight tools, Selection utilities, Edge Marking and more!</b></p>
 </div>
 
-<h1 style="text-align: center;">Pie Menus</h1>
+<h1 style="text-align: center; font-family: sans-serif;">Pie Menus</h1>
 
 <div class="card-container">
 
@@ -55,6 +55,10 @@
 
 <div style="display: none;">
   <style>
+    body {
+      font-family: sans-serif;
+    }
+
     .card-container .card {
       width: 100%;
       background-color: rgb(34,34,36);
@@ -62,17 +66,15 @@
       margin-bottom: 20px;
       text-align: center;
       overflow: hidden;
-      transform: translateX(-200px);
+      transform: translateY(50px);
       opacity: 0;
-      animation: slideIn 1s ease-in-out forwards;
-      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); /* smooth and natural */
     }
 
-    .card:nth-child(1) { animation-delay: 0.2s; }
-    .card:nth-child(2) { animation-delay: 0.4s; }
-    .card:nth-child(3) { animation-delay: 0.6s; }
-    .card:nth-child(4) { animation-delay: 0.8s; }
-    .card:nth-child(5) { animation-delay: 1s; }
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     .card img {
       width: 100%;
@@ -82,7 +84,6 @@
 
     .card-content {
       padding: 20px;
-      font-family: sans-serif;
       font-size: 18px;
       color: rgb(180,180,180);
     }
@@ -94,24 +95,29 @@
     }
 
     .card:hover {
-      background-color: rgb(44,44,48); /* Slightly lighter */
+      background-color: rgb(44,44,48);
       transform: scale(1.02);
-      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6); /* More visible on white */
     }
 
     .card:hover h2 {
       color: white;
     }
-
-    @keyframes slideIn {
-      0% {
-        opacity: 0;
-        transform: translateX(-200px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
   </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll('.card');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+
+      cards.forEach(card => observer.observe(card));
+    });
+  </script>
 </div>
