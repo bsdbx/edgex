@@ -57,23 +57,43 @@
   <style>
     body {
       font-family: sans-serif;
+      background: linear-gradient(45deg, #1e2a47, #3c4a8e); /* Gradient background for the body */
+      margin: 0;
+      padding: 0;
+      color: #f3f3f3;
     }
 
-    .card-container .card {
+    h1 {
+      font-family: 'Arial', sans-serif;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 40px;
+      font-size: 36px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 40px auto;
+    }
+
+    .card {
       width: 100%;
-      background-color: rgb(34,34,36);
+      background: linear-gradient(135deg, rgba(34, 34, 36, 1) 0%, rgba(50, 50, 50, 1) 100%); /* Gradient effect for the cards */
       border-radius: 20px;
       margin-bottom: 20px;
       text-align: center;
       overflow: hidden;
-      transform: translateX(-100px);  /* Cards start offscreen to the left */
-      opacity: 0;  /* Initially invisible */
+      transform: translateX(-100px); /* Cards start offscreen to the left */
+      opacity: 0; /* Initially invisible */
       transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1); /* Transition for both sliding and fading */
     }
 
     .card.visible {
-      transform: translateX(0);  /* Slide to original position */
-      opacity: 1;  /* Become fully visible */
+      transform: translateX(0); /* Slide to original position */
+      opacity: 1; /* Become fully visible */
     }
 
     .card img {
@@ -95,7 +115,7 @@
     }
 
     .card:hover {
-      background-color: rgb(44,44,48);
+      background: linear-gradient(135deg, rgba(44, 44, 48, 1) 0%, rgba(70, 70, 70, 1) 100%); /* Darker gradient on hover */
       transform: scale(1.02);
     }
 
