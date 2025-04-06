@@ -9,11 +9,9 @@
 
 <h1 style="text-align: center;">Pie Menus</h1>
 
-<!-- Cards Container -->
 <div class="card-container">
 
-  <!-- Card Template -->
-  <div class="card">
+  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/7803e31dbc5d11117455503de014503f.gif')">
     <img src="https://assets.superhivemarket.com/cache/7803e31dbc5d11117455503de014503f.gif">
     <div class="card-content">
       <h2>Attribute Set</h2>
@@ -21,7 +19,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/cdb735e6709b3d02d4a3469bedfd953f.gif')">
     <img src="https://assets.superhivemarket.com/cache/cdb735e6709b3d02d4a3469bedfd953f.gif">
     <div class="card-content">
       <h2>Quick Attribute</h2>
@@ -29,7 +27,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/e646dc803d1e0e01f680ee2f71176703.gif')">
     <img src="https://assets.superhivemarket.com/cache/e646dc803d1e0e01f680ee2f71176703.gif">
     <div class="card-content">
       <h2>Attribute Select</h2>
@@ -37,7 +35,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/f17fb141117dd1dc26c09171adba067c.gif')">
     <img src="https://assets.superhivemarket.com/cache/f17fb141117dd1dc26c09171adba067c.gif">
     <div class="card-content">
       <h2>Quick Mark</h2>
@@ -45,7 +43,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="showGif('https://assets.superhivemarket.com/cache/d92582ba963d9f5540f57ca8c6110422.gif')">
     <img src="https://assets.superhivemarket.com/cache/d92582ba963d9f5540f57ca8c6110422.gif">
     <div class="card-content">
       <h2>Mark Select</h2>
@@ -55,7 +53,13 @@
 
 </div>
 
-<!-- Inline CSS block allowed on BlenderMarket -->
+<!-- Modal for displaying GIF -->
+<div id="gifModal" class="modal" onclick="closeModal()">
+  <div class="modal-content">
+    <img id="modalGif" style="width: 100%; height: 100%; object-fit: contain; border: none;">
+  </div>
+</div>
+
 <div style="display: none;">
   <style>
     .card-container .card {
@@ -68,7 +72,7 @@
       transform: translateX(-200px);
       opacity: 0;
       animation: slideIn 1s ease-in-out forwards;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:nth-child(1) { animation-delay: 0.2s; }
@@ -97,14 +101,39 @@
     }
 
     .card:hover {
+      background-color: rgb(44,44,48); /* Slightly lighter */
       transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(116,142,234,0.5);
+      box-shadow: 0 0 20px rgba(116, 142, 234, 0.6); /* More visible on white */
     }
 
     .card:hover h2 {
       color: white;
     }
 
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 50%;
+      height: 50%;
+      overflow: hidden;
+    }
+
+    /* Keyframe for Slide In */
     @keyframes slideIn {
       0% {
         opacity: 0;
@@ -117,3 +146,16 @@
     }
   </style>
 </div>
+
+<script>
+  // Function to show the gif modal
+  function showGif(gifUrl) {
+    document.getElementById('gifModal').style.display = "flex";  // Change display to 'flex' for centering
+    document.getElementById('modalGif').src = gifUrl;
+  }
+
+  // Function to close the gif modal when clicked outside
+  function closeModal() {
+    document.getElementById('gifModal').style.display = "none";
+  }
+</script>
