@@ -56,7 +56,7 @@
 <!-- Modal for displaying GIF -->
 <div id="gifModal" class="modal" onclick="closeModal()">
   <div class="modal-content">
-    <img id="modalGif" style="width: 100%; height: 100%; object-fit: contain; border: none;">
+    <img id="modalGif" style="width: 100%; height: 100%; object-fit: contain; border: none; display: none;">
   </div>
 </div>
 
@@ -112,18 +112,19 @@
 
     /* Modal Styling */
     .modal {
-      display: none;
+      display: none; /* Ensure modal is hidden initially */
       position: fixed;
       z-index: 1;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.7); /* Background blur */
       padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: all 0.3s ease-in-out;
     }
 
     .modal-content {
@@ -148,14 +149,54 @@
 </div>
 
 <script>
+  // Ensuring the modal is hidden on page load
+  window.onload = function() {
+    const modal = document.getElementById('gifModal');
+    const modalGif = document.getElementById('modalGif');
+
+    modal.style.display = "none";  // Ensure the modal is hidden when the page loads
+    modalGif.style.display = "none";  // Ensure the gif image is also hidden
+  }
+
   // Function to show the gif modal
   function showGif(gifUrl) {
-    document.getElementById('gifModal').style.display = "flex";  // Change display to 'flex' for centering
-    document.getElementById('modalGif').src = gifUrl;
+    const modal = document.getElementById('gifModal');
+    const modalGif = document.getElementById('modalGif');
+
+    // Show the modal
+    modal.style.display = "flex";
+    modalGif.src = gifUrl; // Set the gif source
+    modalGif.style.display = "block"; // Display the image
+
+    // Disable scrolling on the body
+    document.body.style.overflow = "hidden";
   }
 
   // Function to close the gif modal when clicked outside
   function closeModal() {
-    document.getElementById('gifModal').style.display = "none";
+    const modal = document.getElementById('gifModal');
+    const modalGif = document.getElementById('modalGif');
+
+    modal.style.display = "none";  // Hide the modal
+    modalGif.style.display = "none";  // Hide the image
+    modalGif.src = '';  // Clear the gif source to prevent lingering images
+
+    // Re-enable scrolling on the body
+    document.body.style.overflow = "auto";
   }
+
+  // Close modal with ESC key
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Close modal with right-click (RMB)
+  window.addEventListener('contextmenu', function(e) {
+    if (document.getElementById('gifModal').style.display === "flex") {
+      e.preventDefault();  // Prevent default context menu from appearing
+      closeModal();
+    }
+  });
 </script>
